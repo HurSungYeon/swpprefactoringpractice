@@ -7,9 +7,9 @@ class DateCalculator
 	@year = 1980
     end
 
-    def convert()
+    def convert
 	while (@days > 365) do
-	    if (@year % 400 == 0 || (@year % 4 == 0 && @year % 100 != 0))
+	    if leap_year?
 		if (@days > 366)
 		    @days -= 366
 		    @year += 1
@@ -21,9 +21,13 @@ class DateCalculator
        end
     return @year
     end
+
+    def leap_year?
+	(@year % 400 == 0 || (@year % 4 == 0 && @year % 100 != 0))
+    end
 end
 if __FILE__ == $0
-    year =  DateCalculator.convert(ARGV[0].to_i)
+    year =  DateCalculator.new(ARGV[0].to_i)
     puts year.convert
 end
 
