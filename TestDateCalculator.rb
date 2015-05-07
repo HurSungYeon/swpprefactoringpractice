@@ -15,3 +15,21 @@ class TestDateCalculator < Minitest::Test
 
 	assert helper_leapyear(2000)
    end
+
+   def help_addregularyear(days, year)
+	calc = DateCalculator.new(days)
+	calc.year = year
+	calc.add_regular_year
+	return calc.year
+   end
+
+   def test_addregularyear
+	assert_equal help_addregularyear(255,2009), 2009
+
+	assert_equal help_addregularyear(400,2009), 2010
+
+	assert_equal help_addregularyear(365,2009), 2010
+   end
+
+
+end
