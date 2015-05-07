@@ -31,5 +31,25 @@ class TestDateCalculator < Minitest::Test
 	assert_equal help_addregularyear(365,2009), 2010
    end
 
+   def help_convert(days, year)
+	calc = DateCalculator.new(days)
+	calc.year = year
+	return calc.convert
+   end
 
+   def test_convert
+
+	assert_equal help_convert(364, 2009), 2009
+
+	assert_equal help_convert(365, 2008), 2008
+
+	assert_equal help_convert(365, 2009), 2010
+
+	assert_equal help_convert(366, 2008), 2009
+
+	assert_equal help_convert(366, 2009), 2010
+
+	assert_equal help_convert(367, 2008), 2009
+   end
+   
 end
